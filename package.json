@@ -20,5 +20,8 @@
   "dependencies": {
     "dayjs": "^1.11.9",
     "node-dev": "^8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }

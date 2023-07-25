@@ -1,12 +1,16 @@
 //j'importe le module natif http de node
 const http = require(`http`);
-const dayjs = require('dayjs');
+const dayjs = require("dayjs");
 //j'importe my-modules
 const books = require(`./my-modules/books`);
 const ucfirst = require(`./my-modules/ucfirst`);
 
-//dayjs().format()
-//console.log(books);
+//  const daysjs = dayjs()
+//   .startOf("day")
+//   .add(1, "month")
+//   .set("year", 1998)
+//   .format("DD-MMMM-YYYY");
+// //console.log(books);
 //j'instancie mon server
 const server = http.createServer();
 const localhost = "http://localhost:";
@@ -17,20 +21,20 @@ server.on(`request`, (req, res) => {
   //je place en dur mon tableau
 
   res.write(`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>`);
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>`);
 
   switch (url) {
     case `/`:
       res.write(
         ucfirst(
           `voici la liste des bouquins réferencé => 
-        <a href="${localhost}${port}${lienBook}">ici</a>`
+            <a href="${localhost}${port}${lienBook}">ici</a>`
         )
       );
       break;
@@ -38,11 +42,15 @@ server.on(`request`, (req, res) => {
       for (let book of books) {
         res.write(
           ucfirst(`voici les livres :${book.title}
-    language : ${book.language}
-    country :${book.country}
-    author :${book.author}
-    date :${book.date}
-    `)
+        language : ${book.language}
+        country :${book.country}
+        author :${book.author}
+        date ${dayjs("2019-01-25")
+        .add(150, "day")
+        .subtract(1, "year")
+        .year(2007)
+        .toString()}
+        `)
         );
       }
       break;
@@ -51,11 +59,17 @@ server.on(`request`, (req, res) => {
   }
 
   res.write(`</body>
-</html>`);
+    </html>`);
 
   res.end();
 });
-
+console.log(
+  `${dayjs("2019-01-25")
+    .add(150, "day")
+    .subtract(1, "year")
+    .year(2007)
+    .toString()} SALUT`
+);
 //j'écoute le port
 const port = 5000;
 
