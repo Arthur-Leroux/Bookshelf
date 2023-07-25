@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Arthur-Leroux/Bookshelf#readme",
   "dependencies": {
+    "dayjs": "^1.11.9",
     "node-dev": "^8.0.0"
   }
 }

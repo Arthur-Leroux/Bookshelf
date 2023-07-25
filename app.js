@@ -1,13 +1,16 @@
 //j'importe le module natif http de node
 const http = require(`http`);
+const dayjs = require('dayjs');
 //j'importe my-modules
 const books = require(`./my-modules/books`);
+const ucfirst = require(`./my-modules/ucfirst`);
 
+//dayjs().format()
 //console.log(books);
 //j'instancie mon server
 const server = http.createServer();
 const localhost = "http://localhost:";
-const lienBook = '/books';
+const lienBook = "/books";
 //j'écoute les requêtes
 server.on(`request`, (req, res) => {
   const url = req.url;
@@ -25,25 +28,28 @@ server.on(`request`, (req, res) => {
   switch (url) {
     case `/`:
       res.write(
-        `voici la liste des bouquins réferencé => 
+        ucfirst(
+          `voici la liste des bouquins réferencé => 
         <a href="${localhost}${port}${lienBook}">ici</a>`
+        )
       );
-break;
+      break;
     case `/books`:
       for (let book of books) {
-        res.write(`<ul>
-    <li>voici les livres :${book.title}
+        res.write(
+          ucfirst(`voici les livres :${book.title}
     language : ${book.language}
     country :${book.country}
     author :${book.author}
     date :${book.date}
-    </li></ul>`);
+    `)
+        );
       }
       break;
-      default:
-        res.write(`cette page n'est pas disponible`);
+    default:
+      res.write(`cette page n'est pas disponible`);
   }
-  
+
   res.write(`</body>
 </html>`);
 
