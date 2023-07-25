@@ -1,20 +1,17 @@
 //j'importe le module natif http de node
 const http = require(`http`);
 const dayjs = require("dayjs");
+
 //j'importe my-modules
 const books = require(`./my-modules/books`);
 const ucfirst = require(`./my-modules/ucfirst`);
 
-//  const daysjs = dayjs()
-//   .startOf("day")
-//   .add(1, "month")
-//   .set("year", 1998)
-//   .format("DD-MMMM-YYYY");
-// //console.log(books);
+
+ //console.log(books);
 //j'instancie mon server
 const server = http.createServer();
 const localhost = "http://localhost:";
-const lienBook = "/books";
+
 //j'écoute les requêtes
 server.on(`request`, (req, res) => {
   const url = req.url;
@@ -45,11 +42,7 @@ server.on(`request`, (req, res) => {
         language : ${book.language}
         country :${book.country}
         author :${book.author}
-        date ${dayjs("2019-01-25")
-        .add(150, "day")
-        .subtract(1, "year")
-        .year(2007)
-        .toString()}
+        date ${dayjs(book.date)}
         `)
         );
       }
@@ -64,7 +57,7 @@ server.on(`request`, (req, res) => {
   res.end();
 });
 console.log(
-  `${dayjs("2019-01-25")
+  `${dayjs(0)
     .add(150, "day")
     .subtract(1, "year")
     .year(2007)
