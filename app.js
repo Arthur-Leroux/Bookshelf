@@ -7,7 +7,6 @@ const  server = http.createServer();
 //j'écoute les requêtes
 server.on(`request`,(req,res)=>{
 
-//je place en dur mon tableau 
 
 res.write(`coucou`);
 
