@@ -6,12 +6,11 @@ const dayjs = require("dayjs");
 const books = require(`./my-modules/books`);
 const ucfirst = require(`./my-modules/ucfirst`);
 
-
- //console.log(books);
+//console.log(books);
 //j'instancie mon server
 const server = http.createServer();
 const localhost = "http://localhost:";
-
+const lienBook = '/books';
 //j'écoute les requêtes
 server.on(`request`, (req, res) => {
   const url = req.url;
@@ -57,11 +56,7 @@ server.on(`request`, (req, res) => {
   res.end();
 });
 console.log(
-  `${dayjs(0)
-    .add(150, "day")
-    .subtract(1, "year")
-    .year(2007)
-    .toString()} SALUT`
+  `${dayjs(0).add(150, "day").subtract(1, "year").year(2007).toString()} SALUT`
 );
 //j'écoute le port
 const port = 5000;
