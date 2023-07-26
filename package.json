@@ -4,8 +4,8 @@
   "description": "date, livre",
   "main": "app.js",
   "scripts": {
-    "start": "node-dev start.js",
-    "dev": "node-dev start.js"
+    "start": "node-dev app.js",
+    "dev": "node-dev app.js"
   },
   "repository": {
     "type": "git",

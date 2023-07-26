@@ -7,8 +7,11 @@ const books = require(`./my-modules/books`);
 const ucfirst = require(`./my-modules/ucfirst`);
 
 //console.log(books);
+
 //j'instancie mon server
 const server = http.createServer();
+//je créer un lien pour allre directement sur le url books cela mévite de la taper a la main a chaque fois
+
 const localhost = "http://localhost:";
 const lienBook = '/books';
 //j'écoute les requêtes
