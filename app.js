@@ -1,47 +1,45 @@
-//j'importe le module natif http de node
-const http = require(`http`);
+// Pour une présentation de notre séléction littéraire
+// nous utilisons un page web il nous faut donc la libraire http
+// afin de créer notre serveur
+const http = require('http');
 
+const bookTable = require('./my-modules/utils');
 
+// Création de notre serveur
+const server = http.createServer((req, res) => {
+    // On court-circuite l'appel automatique du
+    // navigateur au favicon.ico
+    if (req.url === '/favicon.ico') {
+        res.writeHead(200, { 'Content-Type': 'image/x-icon' });
+        res.end();
+        return;
+    }
 
+    // On envoi les header de la réponse http
+    // ici nous voulons une réponse de type text encodé en UTF-8
+    res.writeHead(200, { 'Content-Type': 'text/html charset=utf-8' });
 
-//j'importe my-modules
-const html = require(`./my-modules/utils`);
-const books = require(`./my-modules/books`);
-const ucfirst = require(`./my-modules/ucfirst`);
+    // On écrit l'entête de notre page html
+    res.write(
+        `<!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>Document</title>
+                </head>
+                <body>`
+    );
 
+    // Corps de la page
+    res.write(bookTable);
+    // On écrit le pied de page de notre page html
+    res.write('</body></html>');
 
-
-//console.log(books);
-
-//j'instancie mon server
-const server = http.createServer();
-//je créer un lien pour allre directement sur le url books cela mévite de la taper a la main a chaque fois
-
-const localhost = "http://localhost:";
-const lienBook = '/books';
-//j'écoute les requêtes
-server.on(`request`, (req, res) => {
-  
-  res.write(`<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-  </head>
-  <body>
-      `)
-
-res.write(html);
-res.write(`</body>
-</html>`)
-
-  res.end();
+    // On à fini d'envoyer nos informations au client
+    res.end();
 });
 
-//j'écoute le port
-const port = 5000;
-
-server.listen(port, () => {
-  console.log(`Start on : ${localhost}${port}`);
-});
+// Notre serveur sera sur le port 3000
+server.listen(5000);
