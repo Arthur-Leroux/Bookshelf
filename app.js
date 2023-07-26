@@ -44,7 +44,7 @@ server.on(`request`, (req, res) => {
         language : ${book.language}
         country :${book.country}
         author :${book.author}
-        date ${dayjs(book.date)}
+        date ${dayjs(book.date).format("MM-DD-YYYY")}
         `)
         );
       }
